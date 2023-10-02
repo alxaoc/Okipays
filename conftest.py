@@ -1,7 +1,7 @@
 import pytest
 from selenium import webdriver
 
-from page_actions import initialize_driver
+from action.page_actions import initialize_driver
 
 
 # Цей фікстур допоможе ініціалізувати і закрити драйвер браузера перед кожним тестом

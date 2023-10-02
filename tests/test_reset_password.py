@@ -2,7 +2,7 @@ import pytest
 from selenium.webdriver.common.by import By
 import time
 
-from page_actions import open_page, domain
+from action.page_actions import open_page, domain
 
 
 @pytest.mark.smoke

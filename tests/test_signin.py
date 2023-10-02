@@ -2,11 +2,12 @@ import pytest
 from selenium.webdriver.common.by import By
 import time
 from decouple import config
+from pages.signin_page import SignInPage
 
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-from page_actions import open_page, domain
+from action.page_actions import open_page, domain
 
 
 @pytest.mark.smoke
@@ -84,10 +85,14 @@ def test_login_error(driver, separator, creds):
 
 mail = config('EMAIL')
 passw = config('PASSWORD')
+
+
 @pytest.mark.smoke
 def test_login_success(driver, separator):
-    open_page(driver, domain + '/signin')
-    driver.implicitly_wait(1)
+    signin_page = SignInPage(driver)
+    signin_url = domain + '/signin'
+    signin_page.open(signin_url)
+    driver.implicitly_wait(2)
     # Заповнюємо форму та тиснем кнопку "Sign in"
     driver.find_element(By.ID, 'email').send_keys(mail)
     driver.find_element(By.ID, 'password').send_keys(passw)

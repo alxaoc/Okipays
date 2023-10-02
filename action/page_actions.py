@@ -1,8 +1,8 @@
 from selenium import webdriver
 
-
 # Домен для використання у всіх тестах
 domain = 'https://okipays.com'
+
 
 # Функція для ініціалізації драйвера
 def initialize_driver():

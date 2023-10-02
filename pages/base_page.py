@@ -1,7 +1,7 @@
 class BasePage:
-    def __init__(self, browser):
-        self.browser = browser
+    def __init__(self, driver):
+        self.driver = driver
 
 
 def find(self, args):
-    return self.browser.find_element(*args)
+    return self.driver.find_element(*args)
