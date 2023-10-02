@@ -2,11 +2,12 @@ import pytest
 from selenium.webdriver.common.by import By
 import time
 
+from page_actions import domain, open_page
+
 
 @pytest.mark.smoke
-def test_open_signup_page(driver_fixture, separator):
-    driver = driver_fixture
-    driver.get('https://okipays.com/signup')
+def test_open_signup_page(driver, separator):
+    open_page(driver, domain + '/signup')
     driver.implicitly_wait(1)
 
     try:

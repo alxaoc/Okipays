@@ -2,11 +2,12 @@ import pytest
 from selenium.webdriver.common.by import By
 import time
 
+from page_actions import open_page, domain
+
 
 @pytest.mark.smoke
-def test_open_reset_password_page(driver_fixture, separator):
-    driver = driver_fixture
-    driver.get('https://okipays.com/reset-password')
+def test_open_reset_password_page(driver, separator):
+    open_page(driver, domain + '/reset-password')
     driver.implicitly_wait(1)
 
     try:

@@ -2,12 +2,13 @@ import pytest
 from selenium.webdriver.common.by import By
 import time
 
+from page_actions import domain, open_page
+
 
 @pytest.mark.smoke
-def test_open_main_page(driver_fixture, separator):
-    driver = driver_fixture
-    driver.get('https://okipays.com/')
-    driver.implicitly_wait(5)
+def test_open_main_page(driver, separator):
+    open_page(driver, domain + '/')
+    driver.implicitly_wait(1)
 
     try:
         accept_button = driver.find_element(By.XPATH, "//button[contains(text(), 'Accept')]")
