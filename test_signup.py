@@ -1,8 +1,10 @@
+import pytest
 from selenium.webdriver.common.by import By
 import time
 
 
-def test_open_signup_page(driver_fixture):
+@pytest.mark.smoke
+def test_open_signup_page(driver_fixture, separator):
     driver = driver_fixture
     driver.get('https://okipays.com/signup')
     driver.implicitly_wait(1)
