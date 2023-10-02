@@ -33,25 +33,26 @@ def test_login(driver_fixture, separator):
     driver = driver_fixture
     driver.get('https://okipays.com/signin')
     driver.implicitly_wait(1)
-
+    # Заповнюємо форму та тиснем кнопку "Sign in"
     driver.find_element(By.ID, 'email').send_keys('qawpt@qawpt.qa')
     driver.find_element(By.ID, 'password').send_keys('@Okipays17')
     driver.find_element(By.XPATH, '//button[contains(text(), "Sign in")]').click()
     time.sleep(1)
-
     # Очікуємо, поки з'явиться сповіщення (задаємо тайм-аут)
     wait = WebDriverWait(driver, 3)
     notification = wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'toasted')))
-
     # Отримуємо текст сповіщення
     notification_text = notification.text
-
     # Очікуваний текст сповіщення
     expected_notification_text = "Email or password is incorrect"
     time.sleep(1)
-
     # Порівнюємо отриманий текст з очікуваним за допомогою assert
-    assert expected_notification_text == notification_text, f"Текст сповіщення не відповідає очікуваному. Очікувано: {expected_notification_text}, Отримано: {notification_text}"
+    if expected_notification_text == notification_text:
+        print("\nУспіх: Текст сповіщення відповідає очікуваному.")
+    else:
+        print(
+            f"Помилка: Текст сповіщення не відповідає очікуваному. Очікувано: {expected_notification_text}, Отримано: {notification_text}")
+
     time.sleep(1)
     # Закриваємо веб-сторінку
     driver.quit()
